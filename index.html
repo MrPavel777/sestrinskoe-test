@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Тест по сестринскому делу</title>
+  <style>
+    body { font-family: sans-serif; background: #111; color: #fff; padding: 20px; }
+    .card { background: #222; padding: 15px; border-radius: 10px; margin-bottom: 15px; }
+    .card h3 { margin-top: 0; }
+    label { display: block; margin: 5px 0; }
+    .star { float: right; cursor: pointer; color: gold; }
+  </style>
+</head>
+<body>
+  <h1>Тест по сестринскому делу</h1>
+  <div id="quiz"></div>
+
+  <script>
+    const questions = [
+      {
+        "text": "[T018464] ДРЕНАЖНОЕ ПОЛОЖЕНИЕ ПАЦИЕНТА СПОСОБСТВУЕТ [Общее]",
+        "options": [
+          { "label": "А", "text": "отхождение мокроты" },
+          { "label": "Б", "text": "снижению лихорадки" },
+          { "label": "В", "text": "уменьшению одышки" },
+          { "label": "Г", "text": "расширению бронхов" }
+        ],
+        "correct": "А"
+      }
+    ];
+
+    const quizEl = document.getElementById("quiz");
+
+    questions.forEach((q, i) => {
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const title = document.createElement("h3");
+      title.innerHTML = `${q.text} <span class="star">★</span>`;
+      card.appendChild(title);
+
+      q.options.forEach(opt => {
+        const label = document.createElement("label");
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = "q" + i;
+        input.value = opt.label;
+        label.appendChild(input);
+        label.innerHTML += ` ${opt.label}) ${opt.text.replace(/^([А-Г])\)/, "").trim()}`;
+        card.appendChild(label);
+      });
+
+      quizEl.appendChild(card);
+    });
+  </script>
+</body>
+</html>
